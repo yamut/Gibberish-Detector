@@ -1,0 +1,45 @@
+{
+  "name": "yamut/gibberish-detector",
+  "version": "0.0.1",
+  "description": "Detects gibberish",
+  "minimum-stability": "stable",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Greg Schoppe",
+      "email": "contact@gschoppe.com"
+    },
+    {
+      "name": "Dan Mattern",
+      "email": "dan@danmattern.com"
+    }
+  ],
+  "config": {
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "yamut\\GibberishDetector\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "yamut\\GibberishDetector\\Tests\\": "tests"
+    }
+  },
+  "require": {
+    "php": "^7.4",
+    "ext-json": "*"
+  },
+  "prefer-stable": true,
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.1",
+    "phpunit/phpunit": "^9.5",
+    "vimeo/psalm": "^4.9"
+  },
+  "scripts": {
+    "psalm": "vendor/bin/psalm",
+    "test": "vendor/bin/phpunit",
+    "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+  }
+}
