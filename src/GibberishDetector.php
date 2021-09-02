@@ -17,6 +17,7 @@ use Exception;
  */
 class GibberishDetector
 {
+    private const DEFAULT_MODEL = __DIR__ . DIRECTORY_SEPARATOR . 'Model' . DIRECTORY_SEPARATOR . 'gibberish_model.json';
     protected int $minimum_probability = 10;
     protected string $charset = ' abcdefghijklmnopqrstuvwxyz';
     protected array $charmap;
@@ -24,12 +25,15 @@ class GibberishDetector
     protected float $threshold = 0;
 
     /**
-     * @param string|null $model An optional cached model, as exported by `export_model()`
+     * @param string|array|null $model An optional cached model, as exported by `export_model()`
      * @throws Exception
      */
-    public function __construct(?string $model = null)
+    public function __construct($model = null, bool $useDefault = true)
     {
-        if (!empty($model)) {
+        if (!empty($model) || $useDefault) {
+            if ($useDefault) {
+                $model = json_decode(file_get_contents(self::DEFAULT_MODEL), true);
+            }
             $this->import_model($model);
         } else {
             $this->build_charmap();
